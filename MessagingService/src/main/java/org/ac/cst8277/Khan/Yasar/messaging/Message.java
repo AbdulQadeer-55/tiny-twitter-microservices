@@ -1,4 +1,4 @@
-package org.ac.cst8277.Khan.Yasar.messaging;
+package main.java.org.ac.cst8277.Khan.Yasar.messaging;
 
 import org.springframework.data.annotation.Id;
 import org.springframework.data.relational.core.mapping.Table;
