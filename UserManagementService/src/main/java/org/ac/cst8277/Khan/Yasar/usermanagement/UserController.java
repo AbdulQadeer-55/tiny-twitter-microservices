@@ -18,7 +18,6 @@ public class UserController {
     @Autowired
     private TokenStore tokenStore;
 
-    // Requirement: Authenticate and return a UUID Token
     @PostMapping("/login")
     public Mono<ResponseEntity<String>> login(@RequestBody User loginRequest) {
         return userRepository.findByUsername(loginRequest.getUsername())
@@ -30,7 +29,6 @@ public class UserController {
             .defaultIfEmpty(ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Invalid User"));
     }
 
-    // Internal API: Called by MessagingService to check if a token is valid
     @GetMapping("/validate")
     public Mono<ResponseEntity<User>> validateToken(@RequestParam String token) {
         User user = tokenStore.activeTokens.get(token);
@@ -40,13 +38,11 @@ public class UserController {
         return Mono.just(ResponseEntity.status(HttpStatus.UNAUTHORIZED).build());
     }
 
-    // Requirement I: Get All Users
     @GetMapping
     public Flux<User> getAllUsers() {
         return userRepository.findAll();
     }
     
-    // Requirement III: Add User
     @PostMapping
     public Mono<User> addUser(@RequestBody User newUser) {
         return userRepository.save(newUser);

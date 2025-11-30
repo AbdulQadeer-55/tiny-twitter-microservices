@@ -4,7 +4,7 @@ import org.springframework.data.relational.core.mapping.Table;
 import lombok.Data;
 
 @Data
-@Table("roles") // Matches your DB table from Assignment 1
+@Table("roles")
 public class Role {
     @Id
     private Integer id;
